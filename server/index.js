@@ -10,6 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
+import connectDB from "./config/db.js";
 
 // CONFIGURATION
 const __filename = fileURLToPath(import.meta.url);
