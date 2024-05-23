@@ -43,12 +43,9 @@ app.post("/auth/register", upload.single("picture"), register);
 app.use("/auth", authRoutes);
 
 // MONGOOSE SETUP
+
 const PORT = process.env.PORT || 6001;
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+connectDB()
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })
