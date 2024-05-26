@@ -9,7 +9,7 @@ const ModuleRoutes = (props) => {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="*" element={<PrivateModuleRoutes />} />
+      {/* <Route path="*" element={<PrivateModuleRoutes />} /> */}
     </Routes>
   );
 };
