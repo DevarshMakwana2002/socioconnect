@@ -12,9 +12,10 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setLogin } from "state";
+// import { setLogin } from "state";
 import Dropzone from "react-dropzone";
-import FlexBetween from "components/FlexBetween";
+// import FlexBetween from "components/FlexBetween";
+import { setLogin } from "../../store/auth";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -173,7 +174,7 @@ const Form = () => {
                   helperText={touched.occupation && errors.occupation}
                   sx={{ gridColumn: "span 4" }}
                 />
-                <Box
+                {/* <Box
                   gridColumn="span 4"
                   border={`1px solid ${palette.neutral.medium}`}
                   borderRadius="5px"
@@ -205,7 +206,7 @@ const Form = () => {
                       </Box>
                     )}
                   </Dropzone>
-                </Box>
+                </Box> */}
               </>
             )}
 

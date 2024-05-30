@@ -7,7 +7,7 @@ import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Register from "./components/Register";
+// import Register from "./components/Register";
 import LoginPage from "./components/loginPage";
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/error" element={<ErrorPage />} />
           {/* Add other routes here */}
         </Routes>
