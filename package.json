@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@mui/icons-material": "^5.15.18",
-    "@mui/material": "^5.15.18",
-    "formik": "^2.4.6",
-    "react-dropzone": "^14.2.3",
-    "yup": "^1.4.0"
-  }
-}

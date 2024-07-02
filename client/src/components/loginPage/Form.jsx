@@ -7,15 +7,14 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { setLogin } from "state";
-import Dropzone from "react-dropzone";
 // import FlexBetween from "components/FlexBetween";
 import { setLogin } from "../../store/auth";
+import MyDropzone from "../../global-component/DropZone.tsx";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -80,7 +79,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:4000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -207,6 +206,7 @@ const Form = () => {
                     )}
                   </Dropzone>
                 </Box> */}
+                <MyDropzone />
               </>
             )}
 
