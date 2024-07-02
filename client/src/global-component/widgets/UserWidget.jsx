@@ -39,13 +39,13 @@ const UserWidget = ({ userId, picturePath }) => {
   }
 
   const {
-    firstName,
-    lastName,
-    location,
-    occupation,
-    viewedProfile,
-    impressions,
-    friends,
+    firstName = "",
+    lastName = "",
+    location = "",
+    occupation = "",
+    viewedProfile = 0,
+    impressions = 0,
+    friends = [],
   } = user;
 
   return (
