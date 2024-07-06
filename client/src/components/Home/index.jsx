@@ -6,10 +6,11 @@ import MyPostWidget from "../../global-component/widgets/MyPostWidget.jsx";
 import PostsWidget from "../../global-component/widgets/PostsWidget.jsx";
 import AdvertWidget from "../../global-component/widgets/AdvertWidget.jsx";
 import FriendListWidget from "../../global-component/widgets/FriendListWidget.jsx";
+import useHomePageFetch from "./useHomePageFetch.js";
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  const user = useSelector((state) => state.user);
+  const user = useHomePageFetch();
   const _id = user?._id;
   const picturePath = user?.picturePath;
 
