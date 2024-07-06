@@ -30,7 +30,9 @@ const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user =
+    useSelector((state) => state.user) ||
+    JSON.parse(localStorage.getItem("user"));
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const theme = useTheme();
@@ -92,11 +94,11 @@ const Navbar = () => {
               value={fullName}
               sx={{
                 backgroundColor: neutralLight,
-                width: "150px",
                 borderRadius: "0.25rem",
                 p: "0.25rem 1rem",
                 "& .MuiSvgIcon-root": {
                   pr: "0.25rem",
+                  pl: "0.5rem",
                   width: "3rem",
                 },
                 "& .MuiSelect-select:focus": {

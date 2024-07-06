@@ -20,10 +20,8 @@ export default function App() {
   const mode = useSelector((state) => state.mode);
   // const mode = "light";
   const theme = React.useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  const isAuth = useSelector((state) => state.auth.token);
-  const state = useSelector((state) => {
-    console.log(state);
-  });
+  const isAuth =
+    useSelector((state) => state.auth.token) || localStorage.getItem("token");
 
   return (
     <ThemeProvider theme={theme}>
