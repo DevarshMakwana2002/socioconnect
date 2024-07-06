@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Register from "./components/Register";
-import LoginPage from "./components/loginPage";
-import HomePage from "./components/Home";
+import LoginPage from "./components/loginPage/index.jsx";
+import HomePage from "./components/Home/index.jsx";
 
 export default function App() {
   const mode = useSelector((state) => state.mode);
