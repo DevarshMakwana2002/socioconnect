@@ -33,7 +33,8 @@ const MyPostWidget = ({ picturePath }) => {
   const { palette } = useTheme();
   const user = useSelector((state) => state.auth.user);
   const _id = user?._id ?? "";
-  const token = useSelector((state) => state.token);
+  const token =
+    useSelector((state) => state.token) ?? sessionStorage.getItem("token");
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
@@ -49,7 +50,7 @@ const MyPostWidget = ({ picturePath }) => {
 
     const response = await fetch(`http://localhost:4000/posts`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: token },
       body: formData,
     });
     const posts = await response.json();
