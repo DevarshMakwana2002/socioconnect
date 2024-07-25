@@ -6,20 +6,19 @@ function useHomePageFetch() {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
   const [userData, setUserData] = useState();
-  const fetchUser = (userId) => {
-    const response = axios.get(`http://localhost:4000/users/${userId}`, {
+  const fetchUser = async (userId) => {
+    const response = await axios.get(`http://localhost:4000/users/${userId}`, {
       headers: {
         Authorization: token,
       },
     });
-    setUserData(response);
-    console.log(response);
+    setUserData(response?.data);
   };
   useEffect(() => {
     fetchUser(user?._id);
   }, []);
 
-  return { userData };
+  return { userData, fetchUser };
 }
 
 export default useHomePageFetch;

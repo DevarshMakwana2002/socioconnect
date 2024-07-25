@@ -1,20 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../store/auth";
 import MyPostWidget from "./MyPostWidget";
+import axios from "axios";
+import PostWidget from "./PostWidget";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
-  const token = useSelector((state) => state.token);
+  // const posts = useSelector((state) => state.posts);
+  const [posts, setPosts] = useState([]);
+  const token =
+    useSelector((state) => state.token) ?? localStorage.getItem("token");
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:4000/posts", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await axios.get("http://localhost:4000/posts", {
+      headers: { Authorization: token },
     });
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    const data = response.data;
+    setPosts([...data]);
+    // dispatch(setPosts({ posts: data }));
   };
 
   const getUserPosts = async () => {
@@ -22,20 +26,23 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       `http://localhost:4000/posts/${userId}/posts`,
       {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: token },
       }
     );
     const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    setPosts([...data]);
+    // dispatch(setPosts({ posts: data }));
   };
 
   useEffect(() => {
-    if (isProfile) {
+    if (isProfile && userId && token) {
       getUserPosts();
-    } else {
+    } else if (token) {
       getPosts();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId, token]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  console.log(posts);
 
   return (
     <>
@@ -54,7 +61,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             likes,
             comments,
           }) => (
-            <MyPostWidget
+            <PostWidget
               key={_id}
               postId={_id}
               postUserId={userId}
